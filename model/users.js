@@ -3,7 +3,6 @@ const ExpressError = require("../expressError");
 const bcrypt = require("bcrypt");
 const { createToken } = require('../helper/tokens')
 const { BCRYPT_WORK_FACTOR } = require("../config");
-const { NotFoundError } = require("../../../react-joblyy/backend/expressError");
 
 
 class User {
@@ -41,7 +40,7 @@ class User {
          [username]
       );
       const user = result.rows[0]
-      if (!user) throw new NotFoundError(`No user: ${username}`)
+      if (!user) throw new ExpressError(`No user: ${username}`)
 
       return user;
     } catch (error) {
